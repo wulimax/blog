@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__ADMIN__/js/jquery.js"></script>
+    <script src='__PUBLICU__/layer/layer.js'></script>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">表单</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>商品相册</span></div>
+        <li style="border: 1px solid grey;margin-bottom: 20px;">
+
+        <foreach name='data' item='fo'>
+            <span>
+               <img src="{$fo.pics_mid|ltrim='.'}" width="200" style='padding:20px;'>
+               <a href="javascript:;" class='delee'  data="{$fo.pics_id}">[-]&emsp;
+               </a>
+            </span>
+        </foreach>
+    
+        </li>
+        <form action="" method="post" enctype="multipart/form-data">
+              <ul class="forminfo">
+                <li>
+                    <label>商品图片[<a href="javascript:;" class="add">+</a>]</label>
+                    <input name="goods_pic[]" type="file" />
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input name="" id="btnSubmit" type="button" class="btn" value="确认保存" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+$(function(){
+    $('#btnSubmit').on('click',function(){
+        $('form').submit();
+    });
+//点击加号添加文件
+    $str="<li><label>商品图片[<a href='javascript:;' class='del'>-</a>]</label><input name='goods_pic[]' type='file' /></li>";
+    $('.add').click(function(){
+        $(this).parent().parent().after($str);
+    });
+//为-号添加点击删除事件
+    $(document).on('click','.del',function (){
+        $(this).parent().parent().remove();
+    });
+
+    //图片的异步删除
+    $('.delee').on('click',function(){
+        var that=this;
+        var pics_id=$(this).attr('data');
+        // alert(pics_id);
+        $.get("{:U('delPic')}",{pics_id:pics_id},function(data) {
+              console.log(data);
+                if(data.code=='1'){
+                    $(that).parent().remove();
+                }
+                layer.alert(data.message);
+        },'json');
+    });
+
+});
+
+
+</script>
+</html>
+

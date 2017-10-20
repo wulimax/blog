@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="__ADMIN__/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="__ADMIN__/js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLICU__/ue/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLICU__/ue/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLICU__/ue/lang/zh-cn/zh-cn.js"></script>
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">表单</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>基本信息</span></div>
+        <form action="{:U('add')}" method="post" enctype="multipart/form-data">
+            <ul class="forminfo">
+                <li>
+                    <label>商品名称</label>
+                    <input name="name" placeholder="请输入商品名称" type="text" class="dfinput" /><i>名称不能超过30个字符</i></li>
+                <li>
+                    <label>商品价格</label>
+                    <input name="price" placeholder="请输入商品价格" type="text" class="dfinput" /><i></i></li>
+                <li>
+                    <label>商品数量</label>
+                    <input name="goods_number" placeholder="请输入商品数量" type="text" class="dfinput" />
+                </li>
+                <li>
+                    <label>商品重量</label>
+                    <input name="weight" placeholder="请输入商品重量" type="text" class="dfinput" />
+                </li>
+                <li>
+                    <label>商品类型</label>
+                    <select name="type_id" class="dfinput">
+                        <option value="0">--请选择--</option>
+                        <volist name='data' id='vo'>
+                        <option value="{$vo.type_id}">{$vo.type_name}</option>
+                        </volist>
+                    </select>
+                    <i></i>
+                </li>
+                <li>
+                    <label>商品图片</label>
+                    <input name="shangpintu" type="file" />
+                </li>
+                <li><label>是否显示</label>
+                    <cite><input name="is_show" type="radio" value="1" checked="checked" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="is_show" type="radio" value="0" />否
+                    </cite>
+                </li>
+                <li>
+                    <label>商品描述</label>
+                    <textarea name="goods_introduce"  id="qu02" placeholder="请输入商品描述" cols="" rows="" style="width:800px;height:150px;"></textarea>
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input name="add_time" id="btnSubmit" type="submit" class="btn" value="确认保存" />
+                </li>
+            </ul>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript" charset="utf-8">
+       var ue = UE.getEditor('qu02');
+$(function(){
+    $('select[name=type_id]').change(function(){
+        //针对切换类型时初始化化页面;
+        $('.newtag').remove();
+        var _val = $(this).val();
+        var that = this;
+        $.ajax({
+            url:"{:U('getAttr')}",
+            data:{type_id:_val},
+            type:'GET',
+            dataType:'json',
+            success:function(data){
+             
+              $.each(data,function(index,el){
+                var str = '';
+                if(el.attr_sel == '0'){
+                    str +="<li class='newtag'><label>"+el.attr_name+"</label> <input name='attr["+el.attr_id+"][]' placeholder='请输入"+el.attr_name+"' type='text' class='dfinput' /><i></i></li><li>";
+                }else{
+                    str +="<li class='newtag'><label><a href='javascript:;' class='add'>[+]</a>"+el.attr_name+"</label> <select name='attr["+el.attr_id+"][]' class='dfinput'><option value='0'>请选择"+el.attr_name+"</option>";
+
+                    var arr = el.attr_vals.split(',');
+                    for(var i=0; i<arr.length;i++){
+                        str +="<option value='"+arr[i]+"'>"+arr[i]+"</option>";
+                    }
+                    str +="</select><i></i></li>"
+
+                }
+                $(that).parent().after(str);
+              });
+            }
+
+        });
+       });
+
+    //给加号绑定点击添加事件
+    $(document).on('click','.add',function(){
+        var li = $(this).parent().parent().clone();
+        // 方案1
+        // li.find('a').html('[-]');
+        // li.find('a').attr('class','del');
+        //方案2;
+        li.find('a').remove();
+        li.find('label').prepend("<a href='javascript:;' class='del'>[-]</a>");
+        console.log(li);
+        $(this).parent().parent().after(li);
+    });
+
+    //添加减号删除事件
+    $(document).on('click','.del',function(){
+        var li = $(this).parent().parent().remove();  
+    });
+})
+       
+</script>
+</html>
