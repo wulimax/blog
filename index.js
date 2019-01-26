@@ -71,3 +71,4 @@
     array[top] = tmp;
     }
     return array;
+  }
