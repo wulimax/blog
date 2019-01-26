@@ -2,7 +2,7 @@
   //创造虚拟后台数据
     var arrs = ['国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊','国强','海云','丁会计','胜磊'];
     var comm_arr = ['test'];
-      arrs = arrs.concat(comm_arr);
+      arrs = shuffle(arrs.concat(comm_arr));
 
     //获取父元素
     var boxNode = document.getElementById("box");
@@ -62,3 +62,12 @@
 
      }
    }
+   function shuffle(array) {
+    var tmp, current, top =array.length;
+    if(top) while(--top){
+    current =Math.floor(Math.random() * (top + 1));
+    tmp =array[current];
+    array[current] =array[top];
+    array[top] = tmp;
+    }
+    return array;
