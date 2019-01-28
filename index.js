@@ -32,10 +32,15 @@
         }else{
         	for (var j = 0; j < arrs.length; j++) {
                  if($('#box div').eq(j).css('background') == 'rgb(227, 95, 71) none repeat scroll 0% 0% / auto padding-box border-box'){
-                 	if(comm_arr.indexOf($('#box div').eq(j).text()) > -1 || !get_user($('#box div').eq(j).text())){
+                 	if(comm_arr.indexOf($('#box div').eq(j).text()) > -1){
                         quchong();
                  	}else{
-                 		get_user($('#box div').eq(j).text(),true);
+                 		if(get_user($('#box div').eq(j).text())){
+                 			get_user($('#box div').eq(j).text(),true);
+                 		}else{
+                 			quchong();
+                 		}
+                 		
                  	}
                  	
                  }
@@ -76,12 +81,15 @@
     return array;
   }
   function quchong(){
+  	console.log('test')
   	for (var j = 0; j < arrs.length; j++) {
        $('#box div').eq(j).css({'background':''});          
       }
   	for (var j = 0; j < arrs.length; j++) {
   		if(get_user($('#box div').eq(j).text()) && comm_arr.indexOf($('#box div').eq(j).text()) == -1){
-  			$('#box div').eq(j).css({'background':'#E35F47'});  break;
+  			$('#box div').eq(j).css({'background':'#E35F47'}); 
+            get_user($('#box div').eq(j).text(),true);
+  			 break;
   		}
                 
       }
