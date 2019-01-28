@@ -22,7 +22,7 @@
                 //留下当前颜色
                 var random = parseInt(Math.random()*arrs.length);
                 if(comm_arr.indexOf($('#box div').eq(random).text()) > -1){
-                    console.log($('#box div').eq(random).text())
+                   
                  
                 }else{
                        //清空所有颜色
@@ -37,6 +37,11 @@
             },100);
             this.value="停止";
         }else{
+        	for (var j = 0; j < arrs.length; j++) {
+                 if($('#box div').eq(j).css('background') == 'rgb(227, 95, 71) none repeat scroll 0% 0% / auto padding-box border-box'){
+                 	get_user($('#box div').eq(j).text(),true);
+                 }
+              }
             //清除计时器
             clearInterval(timeId);
             this.value="开始点名";
@@ -51,7 +56,7 @@
      if(!type){
      if(endtime == 0 || uarr == 0 || (timestamp-endtime) > 60000 || username == ''){ return true ;}
      }
-     uarr = JSON.parse(uarr);
+     uarr = JSON.parse(uarr)?JSON.parse(uarr):[];
      if(type){
         uarr.push(username);
         uarr = JSON.stringify(uarr);
