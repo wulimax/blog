@@ -54,7 +54,7 @@
      var endtime = localStorage.getItem("timestamp")?localStorage.getItem("timestamp"):0;
      var uarr = localStorage.getItem("username")?localStorage.getItem("username"):0;
      if(!type){
-     if(endtime == 0 || uarr == 0 || (timestamp-endtime) > 60000 || username == ''){ return true ;}
+     if(endtime == 0 || uarr == 0 || (timestamp-endtime) > 14400000 || username == ''){ return true ;}
      }
      uarr = JSON.parse(uarr)?JSON.parse(uarr):[];
      if(type){
