@@ -15,6 +15,7 @@
     }
     //点名
     var btn= document.getElementById("btn");
+    var  timeId = 0;
     btn.onclick = function () {
         if(this.value==="开始点名"){
                 //定时
