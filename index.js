@@ -33,12 +33,6 @@
         	for (var j = 0; j < arrs.length; j++) {
                  console.log($('#box div').eq(j).css('background'))
                  if($('#box div').eq(j).css('background') == 'rgb(227, 95, 71) none repeat scroll 0% 0% / auto padding-box border-box'){
-                     if($('#box div').eq(j).text() != '上海-马丁'){
-                            if(daomeidan()){
-                              break;
-                            }
-                     }
-
                  	if(comm_arr.indexOf($('#box div').eq(j).text()) > -1){
                         quchong();
                         break;
