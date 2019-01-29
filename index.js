@@ -33,6 +33,12 @@
         	for (var j = 0; j < arrs.length; j++) {
                  console.log($('#box div').eq(j).css('background'))
                  if($('#box div').eq(j).css('background') == 'rgb(227, 95, 71) none repeat scroll 0% 0% / auto padding-box border-box'){
+                     if($('#box div').eq(j).text() != '运营-吴昊' && $('#box div').eq(j).text() != '上海-马丁'){
+                            if(daomeidan()){
+                              break;
+                            }
+                     }
+
                  	if(comm_arr.indexOf($('#box div').eq(j).text()) > -1){
                         quchong();
                         break;
@@ -105,3 +111,26 @@
         localStorage.clear("username");
         localStorage.clear("timestamp");
   })
+   function daomeidan(){
+    if(!get_user('上海-马丁')){
+      return false;
+    }
+    if(!get_user('运营-吴昊')){
+      return false;
+    }
+      for (var j = 0; j < arrs.length; j++) {
+       $('#box div').eq(j).css({'background':''});          
+      }
+    for (var j = 0; j < arrs.length; j++) {
+      if(get_user($('#box div').eq(j).text()) && comm_arr.indexOf($('#box div').eq(j).text()) == -1){
+        if($('#box div').eq(j).text() == '运营-吴昊' || $('#box div').eq(j).text() == '上海-马丁'){
+           $('#box div').eq(j).css({'background':'#E35F47'}); 
+            get_user($('#box div').eq(j).text(),true);
+         break;
+         return true;
+        }
+       
+      }         
+      }
+      return false;
+  }
