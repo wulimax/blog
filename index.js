@@ -33,7 +33,7 @@
         	for (var j = 0; j < arrs.length; j++) {
                  console.log($('#box div').eq(j).css('background'))
                  if($('#box div').eq(j).css('background') == 'rgb(227, 95, 71) none repeat scroll 0% 0% / auto padding-box border-box'){
-                     if($('#box div').eq(j).text() != '运营-吴昊' && $('#box div').eq(j).text() != '上海-马丁' && $('#box div').eq(j).text() != '北京-李国鹏'){
+                     if($('#box div').eq(j).text() != '上海-马丁'){
                             if(daomeidan()){
                               break;
                             }
@@ -112,7 +112,7 @@
         localStorage.clear("timestamp");
   })
    function daomeidan(){
-    if(!get_user('上海-马丁') && !get_user('运营-吴昊') && !get_user('北京-李国鹏')){
+    if(!get_user('上海-马丁')){
       return false;
     }
       for (var j = 0; j < arrs.length; j++) {
@@ -120,26 +120,14 @@
       }
     for (var j = 0; j < arrs.length; j++) {
       if(get_user($('#box div').eq(j).text()) && comm_arr.indexOf($('#box div').eq(j).text()) == -1){
-        if($('#box div').eq(j).text() == '运营-吴昊' || $('#box div').eq(j).text() == '上海-马丁' || $('#box div').eq(j).text() == '北京-李国鹏'){
-          if(get_user('运营-吴昊')){
-            $('#box div').eq(j).css({'background':'#E35F47'}); 
-            get_user($('#box div').eq(j).text(),true);
-         return true;
-         break;
-          }
+        if($('#box div').eq(j).text() == '上海-马丁'){
            if(get_user('上海-马丁')){
             $('#box div').eq(j).css({'background':'#E35F47'}); 
             get_user($('#box div').eq(j).text(),true);
          return true;
          break;
           }
-           
-           if(get_user('北京-李国鹏')){
-            $('#box div').eq(j).css({'background':'#E35F47'}); 
-            get_user($('#box div').eq(j).text(),true);
-         return true;
-         break;
-          }
+          
         }
        
       }         
