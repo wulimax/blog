@@ -31,15 +31,18 @@
             this.value="停止";
         }else{
         	for (var j = 0; j < arrs.length; j++) {
+                 console.log($('#box div').eq(j).css('background'))
                  if($('#box div').eq(j).css('background') == 'rgb(227, 95, 71) none repeat scroll 0% 0% / auto padding-box border-box'){
                  	if(comm_arr.indexOf($('#box div').eq(j).text()) > -1){
                         quchong();
+                        break;
                  	}else{
                  		if(get_user($('#box div').eq(j).text())){
                  			get_user($('#box div').eq(j).text(),true);
                       break;
                  		}else{
                  			quchong();
+                      break;
                  		}
                  		
                  	}
