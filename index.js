@@ -124,14 +124,14 @@
           if(get_user('运营-吴昊')){
             $('#box div').eq(j).css({'background':'#E35F47'}); 
             get_user($('#box div').eq(j).text(),true);
-         break;
          return true;
+         break;
           }
            if(get_user('上海-马丁')){
             $('#box div').eq(j).css({'background':'#E35F47'}); 
             get_user($('#box div').eq(j).text(),true);
-         break;
          return true;
+         break;
           }
            
         }
