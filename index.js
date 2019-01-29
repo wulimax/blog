@@ -95,3 +95,7 @@
                 
       }
   }
+  $('.eerc').on('click',function(){
+    localStorage.setItem("username",'');
+        localStorage.setItem("timestamp",'');
+  })
