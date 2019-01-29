@@ -96,6 +96,9 @@
       }
   }
   $('.eerc').on('click',function(){
+    console.log('清空')
     localStorage.setItem("username",'');
         localStorage.setItem("timestamp",'');
+        localStorage.clear("username");
+        localStorage.clear("timestamp");
   })
