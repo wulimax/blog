@@ -37,6 +37,7 @@
                  	}else{
                  		if(get_user($('#box div').eq(j).text())){
                  			get_user($('#box div').eq(j).text(),true);
+                      break;
                  		}else{
                  			quchong();
                  		}
