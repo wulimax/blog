@@ -94,7 +94,11 @@ function randomRange(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-var picArray = ["../img/love01.png", "../img/love02.png", "../img/love03.png",
-    "../img/love05.png", "../img/love06.png", "../img/love07.png"
+var picArray = ["https://wulimax.github.io/blog/wenliang/img/love01.png", 
+                "https://wulimax.github.io/blog/wenliang/img/love02.png",
+                "https://wulimax.github.io/blog/wenliang/img/love03.png",
+                "https://wulimax.github.io/blog/wenliang/img/love05.png",
+                "https://wulimax.github.io/blog/wenliang/img/love06.png",
+                "https://wulimax.github.io/blog/wenliang/img/love07.png"
 ];
 
