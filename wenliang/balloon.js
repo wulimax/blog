@@ -99,7 +99,7 @@ var picArray = ["https://wulimax.github.io/blog/wenliang/img/love01.png",
                 "https://wulimax.github.io/blog/wenliang/img/love03.png",
                 "https://wulimax.github.io/blog/wenliang/img/love05.png",
                 "https://wulimax.github.io/blog/wenliang/img/love06.png",
-                "https://wulimax.github.io/blog/wenliang/img/love07.png".
+                "https://wulimax.github.io/blog/wenliang/img/love07.png",
                 "https://wulimax.github.io/blog/wenliang/img/love08.png",
                 "https://wulimax.github.io/blog/wenliang/img/love09.png"
 ];
